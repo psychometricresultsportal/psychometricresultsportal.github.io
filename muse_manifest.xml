@@ -1,4 +1,4 @@
-<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="psychometricresultsportal.github.io" resolutions="1x" timestamp="1542087838264">
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="psychometricresultsportal.github.io" resolutions="1x" timestamp="1542089858615">
   <folder name="css">
     <file name="site_global.css" crc="444006867"/>
     <file name="index.css" crc="4179474402" ref="index"/>
@@ -19,5 +19,5 @@
     <file name="jquery.watch.js" crc="51536988" ref="index"/>
     <file name="require.js" crc="7928878" ref="index"/>
   </folder>
-  <file name="index.html" crc="186174438" seo="true" mt="1542087801964" redirect="true"/>
+  <file name="index.html" crc="186942711" seo="true" mt="1542089717617" redirect="true"/>
 </manifest>
