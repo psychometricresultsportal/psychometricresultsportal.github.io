@@ -25,34 +25,27 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
    try {Typekit.load();} catch(e) {}
 </script>
 <script type="text/javascript" src="assets/zxcvbn.js"></script>
+
 <script type="text/javascript">
 			function getPassword() {
-				//window.alert("function started");
+				window.alert("function started");
 				var userPassword = document.getElementById("widgetu127_input");
 				var userValue = userPassword.value;
-				//window.alert(userValue);
+				window.alert(userValue);
 				var result = zxcvbn(userValue);
-				//window.alert(result);
 				var score2 = result.score;
-				//window.alert(score2);
-				document.getElementById("valueOfChosen").value = score2;
-				//window.alert("score script completed");
+				window.alert(score2);
+				document.getElementById("widgetu127_input").value = score2;
 				}; //gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server.
-			
-			function setClicked0() {
-				var clickedSubmit = 0;
-				//window.alert("Set clicked to 0");
-			}
-			function setClicked1() {
-				setClicked = 1;
-				var currentPassword = document.getElementById("widgetu127_input").value;
-				if (currentPassword != "") {
-				document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
-				}
+		</script>
+		
+<script type="text/javascript">
+			function showPassword() {
+				document.getElementById("myButton2").innnerHTML="Hide password";
 			}
 		</script>
    </head>
- <body onload="setClicked0()">
+ <body>
 
   <div class="clearfix borderbox" id="page"><!-- column -->
    <div class="clearfix colelem" id="u94-4"><!-- content -->
@@ -64,7 +57,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	<p> Note: You will need to log into this portal on a later date to check if you have won.</p>
 	<br>
    </div>
-   <form id="widgetu116" method="post" enctype="multipart/form-data" action="https://getsimpleform.com/messages?form_api_token=7b9ea930f21621ddad4e7abf24dd98b2" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
+   <form id="widgetu116" enctype="multipart/form-data" method="post" action="https://getsimpleform.com/messages?form_api_token=7b9ea930f21621ddad4e7abf24dd98b2" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
     <div class="position_content" id="widgetu116_position_content">
      <div class="fld-grp clearfix colelem" id="widgetu123" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
       <div class="clearfix colelem" id="pu125-4"><!-- group -->
@@ -82,11 +75,12 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
         <p>Required</p>
        </div>
       </div>
-      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" onchange="getPassword()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Choose a password</span></label></div></span>
+      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" id="widgetu127_input" type="text" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Choose a password</span></label></div></span>
      </div>
+	 <input type="checkbox" name="showPassword" value="showPassword"> Show Password<br>
      <div class="clearfix colelem" id="pu121-4"><!-- group -->
       <div class="clearfix grpelem" id="u121-4"><!-- content -->
-       <p>Submitting...</p>
+       <p>Submitting Form...</p>
       </div>
       <div class="holder" id="u131-4"><!-- content -->
        <p>Success! <a href="portal/index.html">click here</a> to continue.</p>
@@ -94,7 +88,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       <div class="clearfix grpelem" id="u122-4"><!-- content -->
        <p>Form received.</p>
       </div>
-      <button class="submit-btn NoWrap rounded-corners clearfix grpelem" id="u132-4" type="submit" value="Submit" tabindex="3" onclick="setClicked1()"><!-- content -->
+      <button class="submit-btn NoWrap rounded-corners clearfix grpelem" id="u132-4" value="Submit" tabindex="3" onclick="getPassword()"><!-- content -->
        <div style="margin-top:-12px;height:12px;">
         <p>Submit</p>
        </div>
@@ -104,7 +98,6 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
    </form>
    <div class="verticalspacer" data-offset-top="481" data-content-above-spacer="480" data-content-below-spacer="61" data-sizePolicy="fixed" data-pintopage="page_fixedLeft"></div>
   </div>
-  <input type="text" id="valueOfChosen" value="holderValue">
   <!-- Other scripts -->
   <script type="text/javascript">
    // Decide whether to suppress missing file error or not based on preference setting
