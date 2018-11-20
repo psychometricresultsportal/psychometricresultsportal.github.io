@@ -45,11 +45,22 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			}
 			function setClicked1() {
 				setClicked = 1;
+				document.getElementById("widgetu127_input").type = "password";
+				document.getElementById("widgetu123_input").readOnly = "true";
+				document.getElementById("widgetu127_input").readOnly = "true";
+				document.getElementById("checkbox1").disabled = "disabled";
 				var currentPassword = document.getElementById("widgetu127_input").value;
 				if (currentPassword != "") {
-				document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
+					document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
+					}
 				}
-			}
+			function togglePasswordVisibility() {
+				if(document.getElementById("checkbox1").checked == true){
+					document.getElementById("widgetu127_input").type = "text";
+				}else{
+					document.getElementById("widgetu127_input").type = "password";
+				}
+				}
 		</script>
    </head>
  <body onload="setClicked0()">
@@ -83,7 +94,8 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
        </div>
       </div>
       <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" onchange="getPassword()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Choose a password</span></label></div></span>
-     </div>
+     <input type="checkbox" id="checkbox1" onchange="togglePasswordVisibility()">Show password
+	 </div>
      <div class="clearfix colelem" id="pu121-4"><!-- group -->
       <div class="clearfix grpelem" id="u121-4"><!-- content -->
        <p>Submitting...</p>
