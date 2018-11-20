@@ -45,12 +45,14 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			}
 			function setClicked1() {
 				setClicked = 1;
-				document.getElementById("widgetu127_input").type = "password";
-				document.getElementById("widgetu123_input").readOnly = "true";
-				document.getElementById("widgetu127_input").readOnly = "true";
-				document.getElementById("checkbox1").disabled = "disabled";
+				var participantIDhasContent = document.getElementById("widgetu123_input").value;
 				var currentPassword = document.getElementById("widgetu127_input").value;
-				if (currentPassword != "") {
+				if (participantIDhasContent != "" && currentPassword != "") {
+				
+					document.getElementById("widgetu127_input").type = "password";
+					document.getElementById("widgetu123_input").readOnly = "true";
+					document.getElementById("widgetu127_input").readOnly = "true";
+					document.getElementById("checkbox1").disabled = "disabled";
 					document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
 					}
 				}
