@@ -28,10 +28,11 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 <script type="text/javascript">
 			function getPassword() {
 				//window.alert("function started");
-				var userPassword = document.getElementById("widgetu127_input");
+				var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
+				var userPassword = document.getElementById("widgetu127_input"); //get the entered password
 				var userValue = userPassword.value;
 				//window.alert(userValue);
-				var result = zxcvbn(userValue);
+				var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
 				//window.alert(result);
 				var score2 = result.score;
 				//window.alert(score2);
