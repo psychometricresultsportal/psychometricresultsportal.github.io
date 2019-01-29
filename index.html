@@ -28,6 +28,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 <script type="text/javascript">
 			var startTime;
 			var endTime;
+			var PwManagerDetected;
 			var hasCheckRun = 0;
 			function checkPwManager() {
 				if (hasCheckRun == 0) {
@@ -45,13 +46,19 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				endTime = new Date();
 				//window.alert("end time has been set to " + endTime);
 				var timeDiff = endTime - startTime; //in ms
-				window.alert("the time difference is " + timeDiff);
+				//window.alert("the time difference is " + timeDiff);
 				
-				var PwManagerDetected = 1;
+				if (timeDiff < 1000) {
+					PwManagerDetected = 1;
+				};
+				if (timeDiff >= 1000) {
+					PwManagerDetected = 0;
+					//window.alert("no pw manager detected");
+				};
 				
 				if (PwManagerDetected == 0) {
 					//gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server.
-					//window.alert("function started");
+					//window.alert("get password function started");
 					var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
 					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
 					var userValue = userPassword.value;
@@ -62,7 +69,16 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					//window.alert(score2);
 					document.getElementById("valueOfChosen").value = score2;
 					//window.alert("score script completed");
+					document.getElementById("u132-4").disabled = false;
+					//window.alert(document.getElementById("u132-4").disabled);
 				};
+				
+				if (PwManagerDetected == 1) {
+					window.alert("We have detected you are using a password manager or browser auto-fill. Please create your own password");
+					document.getElementById("u132-4").disabled = true;
+					//window.alert(document.getElementById("u132-4").disabled);
+					document.getElementById("PwManagerDetectedHolder").value = "PwManagerDetected";
+				}
 			}; 
 				
 			
@@ -142,10 +158,13 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       </button>
      </div>
     </div>
+	
+	<input class="wrapped-input" type="hidden" id="PwManagerDetectedHolder" name="PwManagerDetectedHolder" tabindex="2" value="NoPwManagerDetected">
+	
    </form>
    <div class="verticalspacer" data-offset-top="481" data-content-above-spacer="480" data-content-below-spacer="61" data-sizePolicy="fixed" data-pintopage="page_fixedLeft"></div>
   </div>
-  <input type="text" id="valueOfChosen" value="holderValue">
+  <input type="hidden" id="valueOfChosen" value="holderValue" >
   <!-- Other scripts -->
   <script type="text/javascript">
    // Decide whether to suppress missing file error or not based on preference setting
