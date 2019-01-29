@@ -26,45 +26,19 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 </script>
 <script type="text/javascript" src="assets/zxcvbn.js"></script>
 <script type="text/javascript">
-			var startTime;
-			var endTime;
-			var hasCheckRun = 0;
-			function checkPwManager() {
-				if (hasCheckRun == 0) {
-					hasCheckRun = 1;
-					//window.alert("checkPwManager function started");
-					//window.alert(hasCheckRun);
-					startTime = new Date();
-					//window.alert("checkPwManager function has set start time to " + startTime);
-				}
-			};
-			
 			function getPassword() {
-				//window.alert("get Password function started");
-				//window.alert("start time is understood as " + startTime);
-				endTime = new Date();
-				//window.alert("end time has been set to " + endTime);
-				var timeDiff = endTime - startTime; //in ms
-				window.alert("the time difference is " + timeDiff);
-				
-				var PwManagerDetected = 1;
-				
-				if (PwManagerDetected == 0) {
-					//gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server.
-					//window.alert("function started");
-					var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
-					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
-					var userValue = userPassword.value;
-					//window.alert(userValue);
-					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
-					//window.alert(result);
-					var score2 = result.score;
-					//window.alert(score2);
-					document.getElementById("valueOfChosen").value = score2;
-					//window.alert("score script completed");
-				};
-			}; 
-				
+				//window.alert("function started");
+				var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
+				var userPassword = document.getElementById("widgetu127_input"); //get the entered password
+				var userValue = userPassword.value;
+				//window.alert(userValue);
+				var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
+				//window.alert(result);
+				var score2 = result.score;
+				//window.alert(score2);
+				document.getElementById("valueOfChosen").value = score2;
+				//window.alert("score script completed");
+				}; //gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server.
 			
 			function setClicked0() {
 				var clickedSubmit = 0;
@@ -122,7 +96,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
         <p>Required</p>
        </div>
       </div>
-      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" onchange="getPassword()" oninput="checkPwManager()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Choose a password</span></label></div></span>
+      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" onchange="getPassword()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Choose a password</span></label></div></span>
      <input type="checkbox" id="checkbox1" onchange="togglePasswordVisibility()">Show password
 	 </div>
      <div class="clearfix colelem" id="pu121-4"><!-- group -->
