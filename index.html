@@ -65,6 +65,9 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
 					var userValue = userPassword.value;
 					//window.alert(userValue);
+					
+					
+					
 					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
 					//window.alert(result);
 					var score2 = result.score;
@@ -73,13 +76,25 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					//window.alert("score script completed");
 					document.getElementById("u132-4").disabled = false;
 					//window.alert(document.getElementById("u132-4").disabled);
+					
+					var specialCharacters = "~!@#$%^&*()_+{}|:<>?,./;'[]\-=";
+					var specialCharacterDetected = 0;
+					for (var i = 0; i < userValue.length; i++) {
+						if (specialCharacters.indexOf(userValue.charAt(i)) != -1) {
+							window.alert("Special character detected");
+							specialCharacterDetected = 1;
+							
+						};
+					};
+					document.getElementById("SpecialCharactersDetectedHolder").value = specialCharacterDetected //sends result to form to be submitted
+					
 				};
 				
 				if (PwManagerDetected == 1) {
 					window.alert("We have detected you are using a password manager or browser auto-fill. Please create your own password");
 					document.getElementById("u132-4").disabled = true;
 					//window.alert(document.getElementById("u132-4").disabled);
-					document.getElementById("PwManagerDetectedHolder").value = "PwManagerDetected";
+					document.getElementById("PwManagerDetectedHolder").value = "1";
 					var getDiv = document.getElementById("ShownIfPwManagerDetected");
 					getDiv.style.display = "block";
 				}
@@ -167,7 +182,9 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
      </div>
     </div>
 	
-	<input class="wrapped-input" type="hidden" id="PwManagerDetectedHolder" name="PwManagerDetectedHolder" tabindex="2" value="NoPwManagerDetected">
+	<input class="wrapped-input" type="hidden" id="PwManagerDetectedHolder" name="PwManagerDetectedHolder" tabindex="2" value="0"> <!-- says whether a password manager was detected so it is submitted in the form -->
+	<input class="wrapped-input" type="text" id="SpecialCharactersDetectedHolder" name="SpecialCharactersDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of special characters to be submitted in the form -->
+	
 	
    </form>
    <div class="verticalspacer" data-offset-top="481" data-content-above-spacer="480" data-content-below-spacer="61" data-sizePolicy="fixed" data-pintopage="page_fixedLeft"></div>
