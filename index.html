@@ -58,15 +58,13 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				};
 				
 				if (PwManagerDetected == 0) {
-					//gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server.
+					//now that the password manager, if any, has been blocked, this function gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server. The same is done for the complexity of the password.
 					//window.alert("get password function started");
 					document.getElementById("ShownIfPwManagerDetected").style.visibility = "hidden";
 					var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
 					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
 					var userValue = userPassword.value;
 					//window.alert(userValue);
-					
-					
 					
 					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
 					//window.alert(result);
@@ -86,7 +84,38 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 							
 						};
 					};
-					document.getElementById("SpecialCharactersDetectedHolder").value = specialCharacterDetected //sends result to form to be submitted
+					document.getElementById("SpecialCharactersDetectedHolder").value = specialCharacterDetected; //sends result to form to be submitted
+					
+					var spaceCharacter = " ";
+					var passphraseDetected = 0;
+					for (var j = 0; j < userValue.length; j++) {
+						if (spaceCharacter.indexOf(userValue.charAt(j)) != -1) {
+							//window.alert("Space character detected");
+							passphraseDetected = 1;
+							
+						};
+					};
+					document.getElementById("PassphraseDetectedHolder").value = passphraseDetected; //sends result to form to be submitted
+					
+					var upperCharacter = "QWERTYUIOPASDFGHJKLZXCVBNM";
+					var lowerCharacter = "qwertyuiopasdfghjklzxcvbnm";
+					var upperDetected = 0;
+					var lowerDetected = 0;
+					for (var k = 0; k < userValue.length; k++) {
+						if (upperCharacter.indexOf(userValue.charAt(k)) != -1) {
+							//window.alert("upper character detected");
+							upperDetected = 1;
+						};
+						if (lowerCharacter.indexOf(userValue.charAt(k)) != -1) {
+							//window.alert("lower character detected");
+							lowerDetected = 1;
+						};
+					};
+					document.getElementById("UpperDetectedHolder").value = upperDetected; //sends result to form to be submitted
+					document.getElementById("LowerDetectedHolder").value = lowerDetected; //sends result to form to be submitted
+					
+					var passwordLength = userValue.length;
+					document.getElementById("PasswordLengthHolder").value = passwordLength; //sends result to form to be submitted
 					
 				};
 				
@@ -97,6 +126,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					document.getElementById("PwManagerDetectedHolder").value = "1";
 					var getDiv = document.getElementById("ShownIfPwManagerDetected");
 					getDiv.style.display = "block";
+					//document.getElementById("widgetu127_input").value = none;
 				}
 			}; 
 				
@@ -184,6 +214,10 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	
 	<input class="wrapped-input" type="hidden" id="PwManagerDetectedHolder" name="PwManagerDetectedHolder" tabindex="2" value="0"> <!-- says whether a password manager was detected so it is submitted in the form -->
 	<input class="wrapped-input" type="hidden" id="SpecialCharactersDetectedHolder" name="SpecialCharactersDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of special characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="PassphraseDetectedHolder" name="PassphraseDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of space characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="UpperDetectedHolder" name="UpperDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of upper case characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="LowerDetectedHolder" name="LowerDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="PasswordLengthHolder" name="PasswordLengthHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
 	
 	
    </form>
