@@ -69,11 +69,16 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
 					//window.alert(result);
 					var score2 = result.score;
+					var numGuesses = result.guesses;
+					var numGuessesLog10 = result.guesses_log10;
+					//window.alert(numGuesses);
 					//window.alert(score2);
 					document.getElementById("valueOfChosen").value = score2;
 					//window.alert("score script completed");
 					document.getElementById("u132-4").disabled = false;
 					//window.alert(document.getElementById("u132-4").disabled);
+					document.getElementById("NumGuessesHolder").value = numGuesses;
+					document.getElementById("NumGuessesLog10Holder").value = numGuessesLog10;
 					
 					var specialCharacters = "~!@#$%^&*()_+{}|:<>?,./;'[]\-=";
 					var specialCharacterDetected = 0;
@@ -206,7 +211,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       </div>
       <button class="submit-btn NoWrap rounded-corners clearfix grpelem" id="u132-4" type="submit" value="Submit" tabindex="3" onclick="setClicked1()"><!-- content -->
        <div style="margin-top:-12px;height:12px;">
-        <p>Submit</p>
+        <p>Create account</p>
        </div>
       </button>
      </div>
@@ -218,6 +223,8 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	<input class="wrapped-input" type="hidden" id="UpperDetectedHolder" name="UpperDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of upper case characters to be submitted in the form -->
 	<input class="wrapped-input" type="hidden" id="LowerDetectedHolder" name="LowerDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
 	<input class="wrapped-input" type="hidden" id="PasswordLengthHolder" name="PasswordLengthHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="NumGuessesHolder" name="NumGuessesHolder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="NumGuessesLog10Holder" name="NumGuessesLog10Holder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
 	
 	
    </form>
