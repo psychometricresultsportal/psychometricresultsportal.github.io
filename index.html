@@ -180,6 +180,10 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 							window.alert("email entered is " + emailHasContent)
 							if (participantSucceeded == 1) {
 								document.getElementById("u132-4").style.visibility = "hidden"; //hides submit button
+								
+								//now redirects back to Qualtrics and passes on the succeeded message
+								window.location.replace("http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success");
+								
 								};
 							}
 						}
