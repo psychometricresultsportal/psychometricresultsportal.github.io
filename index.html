@@ -153,13 +153,13 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					
 			function setClicked0() {
 				var clickedSubmit = 0;
-				window.alert("onload function started");
+				//window.alert("onload function started");
 				document.getElementById("ShownIfPwManagerDetected").style.display = "none";
 				
 				//now get participant ID from URL and pass to participant ID field
 				
 				var participantIDfromQualtrics = getQueryVariable("id");
-				window.alert(participantIDfromQualtrics);
+				//window.alert(participantIDfromQualtrics);
 				if (participantIDfromQualtrics != false) {
 					document.getElementById("widgetu123_input").value = participantIDfromQualtrics;
 				}
