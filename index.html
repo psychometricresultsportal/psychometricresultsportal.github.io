@@ -52,10 +52,10 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				var timeDiff = endTime - startTime; //in ms
 				//window.alert("the time difference is " + timeDiff);
 				
-				if (timeDiff < 1000) {
+				if (timeDiff < 500) {
 					PwManagerDetected = 1;
 				};
-				if (timeDiff >= 1000) {
+				if (timeDiff >= 500) {
 					PwManagerDetected = 0;
 					//window.alert("no pw manager detected");
 				};
@@ -182,8 +182,9 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 								document.getElementById("u132-4").style.visibility = "hidden"; //hides submit button
 								
 								//now redirects back to Qualtrics and passes on the succeeded message
-								window.location.replace("http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success");
+								window.location.replace("http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent);
 								
+								//also needs to pass participant ID back
 								};
 							}
 						}
