@@ -32,64 +32,30 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			var hasCheckRun = 0;
 			var participantSucceeded = 0;
 			var participantIDhasContent = "";
-			var noTimesFunctionRun = 0;
-			
-			var toQualtrics_passwordStrength;
-			var toQualtrics_passwordLength;
-			var toQualtrics_upperCaseUsed;
-			var toQualtrics_lowerCaseUsed;
-			var toQualtrics_passwordManagerDetected;
-			var toQualtrics_numberOfGuessesNeeded;
-			var toQualtrics_noGuessesLog10;
-			var toQualtrics_specialCharacterDetected;
-			var toQualtrics_passphraseDetected;
 			
 			
-			function testFunction() {
-				//window.alert("function triggered");
-				if (hasCheckRun === 0) {
-					startTime = new Date();
+			function checkPwManager() {
+				if (hasCheckRun == 0) {
 					hasCheckRun = 1;
-					noTimesFunctionRun = noTimesFunctionRun + 1;
-				} else {
-					endTime = new Date();
-					noTimesFunctionRun = noTimesFunctionRun + 1;
-					}
-			};
-			
-			
-			
-			//function startTime() {
-				//window.alert("timer function started");
-				//if (hasCheckRun == 1) {
-					//endTime = new Date();
-					//window.alert("end time logged");
-				//};
-				//if (hasCheckRun == 0) {
-					//window.alert("new start time logged")
-					//hasCheckRun = 1;
 					//window.alert("checkPwManager function started");
 					//window.alert(hasCheckRun);
-					//startTime = new Date();
+					startTime = new Date();
 					//window.alert("checkPwManager function has set start time to " + startTime);
-				//};
-				
-			//};
-			
+				}
+			};
 			
 			function getPassword() {
 				//window.alert("get Password function started");
 				//window.alert("start time is understood as " + startTime);
-				//window.alert("final end time is understood as " + endTime);
-				
+				endTime = new Date();
+				//window.alert("end time has been set to " + endTime);
 				var timeDiff = endTime - startTime; //in ms
 				//window.alert("the time difference is " + timeDiff);
 				
-				//window.alert("the number of times run is" + noTimesFunctionRun);
-				
-				if (timeDiff < 500 || noTimesFunctionRun <= 5) {
+				if (timeDiff < 500) {
 					PwManagerDetected = 1;
-				} else {
+				};
+				if (timeDiff >= 500) {
 					PwManagerDetected = 0;
 					//window.alert("no pw manager detected");
 				};
@@ -112,17 +78,11 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					//window.alert(numGuesses);
 					//window.alert(score2);
 					document.getElementById("valueOfChosen").value = score2;
-					
-					toQualtrics_passwordStrength = score2;
-					
 					//window.alert("score script completed");
 					document.getElementById("u132-4").disabled = false;
 					//window.alert(document.getElementById("u132-4").disabled);
 					document.getElementById("NumGuessesHolder").value = numGuesses;
 					document.getElementById("NumGuessesLog10Holder").value = numGuessesLog10;
-					
-					toQualtrics_numberOfGuessesNeeded = numGuesses;
-					toQualtrics_noGuessesLog10 = numGuessesLog10;
 					
 					var specialCharacters = "~!@#$%^&*()_+{}|:<>?,./;'[]\-=";
 					var specialCharacterDetected = 0;
@@ -134,7 +94,6 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 						};
 					};
 					document.getElementById("SpecialCharactersDetectedHolder").value = specialCharacterDetected; //sends result to form to be submitted
-					toQualtrics_specialCharacterDetected = specialCharacterDetected;
 					
 					var spaceCharacter = " ";
 					var passphraseDetected = 0;
@@ -146,7 +105,6 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 						};
 					};
 					document.getElementById("PassphraseDetectedHolder").value = passphraseDetected; //sends result to form to be submitted
-					toQualtrics_passphraseDetected = passphraseDetected;
 					
 					var upperCharacter = "QWERTYUIOPASDFGHJKLZXCVBNM";
 					var lowerCharacter = "qwertyuiopasdfghjklzxcvbnm";
@@ -163,16 +121,10 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 						};
 					};
 					document.getElementById("UpperDetectedHolder").value = upperDetected; //sends result to form to be submitted
-					toQualtrics_upperCaseUsed = upperDetected;
 					document.getElementById("LowerDetectedHolder").value = lowerDetected; //sends result to form to be submitted
-					toQualtrics_lowerCaseUsed = lowerDetected;
 					
 					var passwordLength = userValue.length;
 					document.getElementById("PasswordLengthHolder").value = passwordLength; //sends result to form to be submitted
-					toQualtrics_passwordLength = passwordLength;
-					
-					
-					
 					
 					participantSucceeded = 1;
 					
@@ -180,11 +132,9 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				if (PwManagerDetected == 1) {
 					window.alert("We have detected you are using a password manager or browser auto-fill. Please create your own password");
-					//document.getElementById("u132-4").disabled = true;
+					document.getElementById("u132-4").disabled = true;
 					//window.alert(document.getElementById("u132-4").disabled);
 					document.getElementById("PwManagerDetectedHolder").value = "1";
-					toQualtrics_passwordManagerDetected = "1";
-					
 					var getDiv = document.getElementById("ShownIfPwManagerDetected");
 					getDiv.style.display = "block";
 					//document.getElementById("widgetu127_input").value = none;
@@ -204,11 +154,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			function setClicked0() {
 				var clickedSubmit = 0;
 				//window.alert("onload function started");
-				
 				document.getElementById("ShownIfPwManagerDetected").style.display = "none";
-				
-				document.getElementById("participantIDrequiredDiv").style.display = "none";
-				document.getElementById("passwordRequiredDiv").style.display = "none";
 				
 				//now get participant ID from URL and pass to participant ID field
 				
@@ -219,70 +165,52 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				}
 			}
 			
-			function successFunction() { //used to run onsubmit from form. now onclick from button
+			function successFunction() {
 				//window.alert("success function started")
 				var passwordHasContent = document.getElementById("widgetu127_input").value;
 				var emailHasContent = document.getElementById("email_input").value;
-				participantIDhasContent = document.getElementById("widgetu123_input").value;
 				
 				if (participantIDhasContent != "") {
 					//window.alert("participant ID is " + participantIDhasContent)
 					
 					
 					if (passwordHasContent != "") {
-							//window.alert("password entered is" + passwordHasContent)
-							getPassword();
-						
+						//window.alert("password entered is" + passwordHasContent)
+						if (emailHasContent != "") {
+							//window.alert("email entered is " + emailHasContent)
 							if (participantSucceeded == 1) {
 								document.getElementById("u132-4").style.visibility = "hidden"; //hides submit button
-								
-								document.getElementById("widgetu127_input").type = "password";
-								document.getElementById("widgetu123_input").readOnly = "true";
-								document.getElementById("widgetu127_input").readOnly = "true";
-								document.getElementById("checkbox1").disabled = "disabled";
-								document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
 								
 								//now redirects back to Qualtrics and passes on the succeeded message
 								//window.location.replace("http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent);
 								
-								document.getElementById("redirect").value="http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected;
-							  	
 								document.getElementById("widgetu116").submit();
 								
 								//document.getElementById("redirect").value = "http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent;
 								
 								//also passes participant ID back
 								};
-							
-						} else {
-							window.alert("no password entered");
-							document.getElementById("passwordRequiredDiv").style.display = "block";
-							};
-					} else {
-						window.alert("no particpant ID entered");
-						document.getElementById("participantIDrequiredDiv").style.display = "block";
-						};
+							}
+						}
+					};
 				
 				
 				};
 			
-			//function setClicked1() { //build into successfunction()
-				//window.alert("setclicked1 function started");
-				//setClicked = 1;
-				
+			function setClicked1() {
+				setClicked = 1;
+				participantIDhasContent = document.getElementById("widgetu123_input").value;
 				//document.getElementById("widgetu116").submit();
-				//var currentPassword = document.getElementById("widgetu127_input").value;
-				//if (participantIDhasContent != "" && currentPassword != "") { // this disables the password field and toggle and overwrites the chosen password with the score achieved. This should come after all checks have been done but before form submission.
+				var currentPassword = document.getElementById("widgetu127_input").value;
+				if (participantIDhasContent != "" && currentPassword != "") {
 				
-					//document.getElementById("widgetu127_input").type = "password";
-					//document.getElementById("widgetu123_input").readOnly = "true";
-					//document.getElementById("widgetu127_input").readOnly = "true";
-					//document.getElementById("checkbox1").disabled = "disabled";
-					//document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
-					//};
-				
-				
-				
+					document.getElementById("widgetu127_input").type = "password";
+					document.getElementById("widgetu123_input").readOnly = "true";
+					document.getElementById("widgetu127_input").readOnly = "true";
+					document.getElementById("checkbox1").disabled = "disabled";
+					document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
+					}
+				}
 			function togglePasswordVisibility() {
 				if(document.getElementById("checkbox1").checked == true){
 					document.getElementById("widgetu127_input").type = "text";
@@ -308,7 +236,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	<p> Note: You will need to log into this portal on a later date to check if you have won.</p>
 	<br>
    </div>
-   <form id="widgetu116" method="post" enctype="multipart/form-data" action="https://liveformhq.com/form/36eb0bf1-f037-4341-86f6-5617288e09fd" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
+   <form id="widgetu116" method="post" enctype="multipart/form-data" action="https://liveformhq.com/form/36eb0bf1-f037-4341-86f6-5617288e09fd" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx" onsubmit="successFunction()"><!-- none box -->
     <div class="position_content" id="widgetu116_position_content">
      <div class="fld-grp clearfix colelem" id="widgetu123" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
       <div class="clearfix colelem" id="pu125-4"><!-- group -->
@@ -316,18 +244,9 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
        <div class="fld-message clearfix grpelem" id="u124-4"><!-- content -->
         <p>Required</p>
        </div>
-	   
-	   
-	   
       </div>
       <span class="fld-input NoWrap actAsDiv clearfix colelem" id="u126-4"><!-- content --><div id="u126-3"><input class="wrapped-input" type="text" spellcheck="false" id="widgetu123_input" name="participantID" tabindex="1"/><label class="wrapped-input fld-prompt" id="widgetu123_prompt" for="widgetu123_input"><span class="actAsPara">Enter Participant ID</span></label></div></span>
      </div>
-	 
-	 <div id="participantIDrequiredDiv"><!-- content -->
-        <p style="color:red; font-weight:bold">Participant ID required</p>
-       </div>
-	 
-	 
      <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
       <div class="clearfix colelem" id="pu128-4"><!-- group -->
        <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><!-- content --><span class="actAsPara">Password:</span></label>
@@ -335,14 +254,9 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
         <p>Required</p>
        </div>
       </div>
-      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" oninput="testFunction()" onblur="testFunction()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Create a password</span></label></div></span>
+      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" onchange="getPassword()" oninput="checkPwManager()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Choose a password</span></label></div></span>
      <input type="checkbox" id="checkbox1" onchange="togglePasswordVisibility()">Show password
 	 </div>
-	 
-	 <div id="passwordRequiredDiv"><!-- content -->
-        <p style="color:red; font-weight:bold">Password required</p>
-       </div>
-	 
 	 <div id="ShownIfPwManagerDetected">
 	 A password manager was detected. Please enter a password of your own choosing.
 	 </div>
@@ -350,13 +264,11 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	 <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
       <div class="clearfix colelem" id="pu128-4"><!-- group -->
        <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><!-- content --><span class="actAsPara">Email:</span></label>
-       
+       <div class="fld-message clearfix grpelem" id="u130-4"><!-- content -->
+        <p>Required</p>
+       </div>
       </div>
       <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="text" id="email_input" name="email_input" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Enter your email address</span></label></div></span>
-	  <div id="emailWarning" style="text-align:left; margin:auto; width:auto; indent:0px; font-size:11px"><!-- content -->
-        <p>Your email is required to enter the draw. Leave blank if you do not wish to enter.</p>
-		<p>Your email will be used for no other purpose than contacting you if you have won.</p>
-       </div>
 	 </div>
 	 
 	 
@@ -365,7 +277,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       <div class="clearfix grpelem" id="u121-4"><!-- content -->
        <p>Submitting...</p>
       </div>
-	  <button class="submit-btn NoWrap rounded-corners clearfix grpelem" id="u132-4" type="button" value="Submit" tabindex="3" onclick="successFunction()"><!-- content -->
+	  <button class="submit-btn NoWrap rounded-corners clearfix grpelem" id="u132-4" type="button" value="Submit" tabindex="3" onclick="setClicked1()"><!-- content -->
        <div style="margin-top:-12px;height:12px;">
         <p>Create account</p>
        </div>
@@ -388,7 +300,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	<input class="wrapped-input" type="hidden" id="PasswordLengthHolder" name="PasswordLengthHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
 	<input class="wrapped-input" type="hidden" id="NumGuessesHolder" name="NumGuessesHolder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
 	<input class="wrapped-input" type="hidden" id="NumGuessesLog10Holder" name="NumGuessesLog10Holder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
-	<input type="hidden" name="_redirect" id="redirect" />
+	<input type="hidden" value="http://www.google.com" name="_redirect" id="redirect" />
 	
    </form>
    <div class="verticalspacer" data-offset-top="481" data-content-above-spacer="480" data-content-below-spacer="61" data-sizePolicy="fixed" data-pintopage="page_fixedLeft"></div>
