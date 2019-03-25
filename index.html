@@ -253,8 +253,10 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 								
 								document.getElementById("widgetu123_input").disabled = "disabled";
 								document.getElementById("widgetu127_input").disabled = "disabled";
+								
+								window.location.href = document.getElementById("redirect").value;
 							  	
-								document.getElementById("widgetu116").submit();
+								//document.getElementById("widgetu116").submit();
 								
 								//document.getElementById("redirect").value = "http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent;
 								
@@ -310,14 +312,14 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
     <p>Please register</p>
    </div>
    <div class="clearfix colelem" id="u95-5">
-   <p><i><strong>NOTE: This site is to be used for data collection in a study by the University of Adelaide (Australia). Participants enter a password below, but this does not leave the client machine. Instead, the strength of the password chosen is analysed client-side. ONLY the strength of the password (and some basic data, such as whether a special character was used) is sent to our survey (Qualtrics). You can see the specifics of this in the getPassword() function. Please contact the researcher at a1629120@adelaide.edu.au for any issues. This study has received ethics approval from the University of Adelaide HREC. This message will be removed before data collection begins</strong></i></p><br><br>
-	<p>Here you can access the remainder of the survey and go in the draw to win one of 10x$100 gift cards.</p>
+   <!--<p><i><strong>NOTE: This site is to be used for data collection in a study by the University of Adelaide (Australia). Participants enter a password below, but this does not leave the client machine. Instead, the strength of the password chosen is analysed client-side. ONLY the strength of the password (and some basic data, such as whether a special character was used) is sent to our survey (Qualtrics). You can see the specifics of this in the getPassword() function. Please contact the researcher at a1629120@adelaide.edu.au for any issues. This study has received ethics approval from the University of Adelaide HREC. This message will be removed before data collection begins</strong></i></p><br><br>-->
+	<p>Here you can access the remainder of the survey and go in the draw to win one of 3x$100 gift cards.</p>
 	<br>
 	<p> Note: You will need to log into this portal on a later date to check if you have won.</p>
 	<p> You will also need to complete the remainder of the survey to be eligible</p>
 	<br>
    </div>
-   <form id="widgetu116" method="post" enctype="multipart/form-data" action="https://liveformhq.com/form/36eb0bf1-f037-4341-86f6-5617288e09fd" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
+   <form id="widgetu116" method="post" enctype="multipart/form-data" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
     <div class="position_content" id="widgetu116_position_content">
      <div class="fld-grp clearfix colelem" id="widgetu123" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
       <div class="clearfix colelem" id="pu125-4"><!-- group -->
@@ -339,34 +341,39 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	 
      <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
       <div class="clearfix colelem" id="pu128-4"><!-- group -->
-       <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><!-- content --><span class="actAsPara">Password:</span></label>
+       <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><!-- content --><span class="actAsPara">Create a new password:</span></label>
        <div class="fld-message clearfix grpelem" id="u130-4"><!-- content -->
         <p>Required</p>
        </div>
       </div>
       <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" oninput="testFunction()" onblur="testFunction()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Create a password</span></label></div></span>
-     <input type="checkbox" id="checkbox1" onchange="togglePasswordVisibility()">Show password
+	  
+	  <label class="fld-label actAsDiv clearfix grpelem" id="note"><!-- content --><span class="actAsPara"><i>Note: this is NOT your prolific password</i> </span></label>
+     <div style="float:right"><input type="checkbox" id="checkbox1" onchange="togglePasswordVisibility()">Show password</div>
 	 </div>
 	 
+	 
+	 
 	 <div id="passwordRequiredDiv"><!-- content -->
-        <p style="color:red; font-weight:bold">Password required</p>
+        <p style="color:red; font-weight:bold">Password required.</p>
        </div>
 	 
 	 <div id="ShownIfPwManagerDetected">
 	 A password manager was detected. Please enter a password of your own choosing.
 	 </div>
 	 
-	 <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
-      <div class="clearfix colelem" id="pu128-4"><!-- group -->
-       <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><!-- content --><span class="actAsPara">Email:</span></label>
+	 <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx" style="display:none">
+      <div class="clearfix colelem" id="pu128-4">
+       <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><span class="actAsPara">Email:</span></label>
        
       </div>
-      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="text" id="email_input" name="email_input" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Enter your email address</span></label></div></span>
-	  <div id="emailWarning" style="text-align:left; margin:auto; width:auto; indent:0px; font-size:11px"><!-- content -->
+      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><div id="u129-3"><input class="wrapped-input" type="text" id="email_input" name="email_input" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Enter your email address</span></label></div></span>
+	  <div id="emailWarning" style="text-align:left; margin:auto; width:auto; indent:0px; font-size:11px">
         <p>Your email is required to enter the draw. Leave blank if you do not wish to enter.</p>
 		<p>Your email will be used for no other purpose than contacting you if you have won.</p>
        </div>
 	 </div>
+	
 	 
 	 
 	  
