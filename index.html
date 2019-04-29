@@ -47,6 +47,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			var toQualtrics_noGuessesLog10;
 			var toQualtrics_specialCharacterDetected;
 			var toQualtrics_passphraseDetected;
+			var toQualtrics_group;
 			
 			
 			function testFunction() {
@@ -218,6 +219,11 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				var participantIDfromQualtrics = getQueryVariable("id");
 				//window.alert(participantIDfromQualtrics);
+				
+				//now get group from URL and ready to be sent back to Qualtrics
+				toQualtrics_group = getQueryVariable("group");
+				window.alert("group is "+toQualtrics_group);
+				
 				if (participantIDfromQualtrics != false) {
 					document.getElementById("widgetu123_input").value = participantIDfromQualtrics;
 				}
@@ -249,7 +255,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 								//now redirects back to Qualtrics and passes on the succeeded message
 								//window.location.replace("http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent);
 								
-								document.getElementById("redirect").value="http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected;
+								document.getElementById("redirect").value="http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group;
 								
 								document.getElementById("widgetu123_input").disabled = "disabled";
 								document.getElementById("widgetu127_input").disabled = "disabled";
