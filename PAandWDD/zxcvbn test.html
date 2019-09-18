@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<script type="text/javascript" src="assets/zxcvbn.js"></script>
+		
+		<script type="text/javascript">
+			function getPassword() {
+				var password = prompt("Enter a password");
+				var result = zxcvbn(password);
+				var score2 = result.score;
+				window.alert(password);
+				window.alert(score2);
+				return score2;
+				};
+		</script>
+	</head>
+	<body>
+		<button type="button" onclick="getPassword()">Click Me!</button>
+	</body>
+</html>
