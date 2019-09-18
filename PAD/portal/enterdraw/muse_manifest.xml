@@ -1,0 +1,31 @@
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="psychometricresultsportal.github.io" resolutions="1x" timestamp="1542169185070">
+  <folder name="css">
+    <file name="site_global.css" crc="444006867"/>
+    <file name="untitled-2.css" crc="3860337236" ref="untitled-2"/>
+    <file name="index.css" crc="4179474402" ref="index"/>
+  </folder>
+  <folder name="assets">
+    <file name="index.html" crc="406131056" seo="true" mt="1542166267000"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:untitled-2"/>
+    <file name="museutils.js" crc="340535759" ref="index:untitled-2"/>
+    <file name="whatinput.js" crc="86476730" ref="index:untitled-2"/>
+    <file name="museconfig.js" crc="310584261" ref="index:untitled-2"/>
+    <file name="webpro.js" crc="4059564322" ref="index:untitled-2"/>
+    <file name="form_check.php" crc="4020933626" ref="index"/>
+    <file name="form_throttle.php" crc="4259590256" ref="index"/>
+    <file name="form_process.php" crc="37464564" ref="index"/>
+    <file name="form-u116.php" crc="504546451" ref="index"/>
+    <file name="jquery.watch.js" crc="51536988" ref="index:untitled-2"/>
+    <file name="require.js" crc="7928878" ref="index:untitled-2"/>
+    <file name="form-u279.php" crc="156934192" ref="untitled-2"/>
+  </folder>
+  <folder name="images">
+    <file name="fullsizeoutput_10ad.jpg" crc="4153190892" seo="true" ref="untitled-2">
+      <caption webpage="untitled-2" alt=""/>
+    </file>
+  </folder>
+  <file name="index.html" crc="3928568560" seo="true" mt="1542096363079" redirect="true"/>
+  <file name="untitled-2.html" crc="4142570079" seo="true" mt="1542169138303" redirect="true"/>
+</manifest>
