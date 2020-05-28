@@ -99,13 +99,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					//window.alert("no pw manager detected");
 				};
 				
-				var userPasswordForComparison = document.getElementById("widgetu127_input").value;
-				if (userPasswordForComparison == "Hot$ummer" || userPasswordForComparison == "Z1h3PharaohVKong-%") {
-					var attemptedToEnterSurveyPassword = 1;
-					window.alert("It looks like you have entered the password we gave you in the study. Please choose your own password");
-				};
-				
-				if (PwManagerDetected == 0 && attemptedToEnterSurveyPassword != 1) {
+				if (PwManagerDetected == 0) {
 					//now that the password manager, if any, has been blocked, this function gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server. The same is done for the complexity of the password.
 					//window.alert("get password function started");
 					
