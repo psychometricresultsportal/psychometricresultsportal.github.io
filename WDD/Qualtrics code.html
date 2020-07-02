@@ -1,0 +1,37 @@
+<html>
+<head>
+<script>
+
+var specialCharacters = "~!@#$%^&*()_+{}|:<>?,./;'[]\-=";
+var specialCharacterDetected = 0;
+for (var i = 0; i < userValue.length; i++) {
+	if (specialCharacters.indexOf(userValue.charAt(i)) != -1) {
+		//window.alert("Special character detected");
+		specialCharacterDetected = 1;
+		
+	};
+};
+
+var upperCharacter = "QWERTYUIOPASDFGHJKLZXCVBNM";
+var lowerCharacter = "qwertyuiopasdfghjklzxcvbnm";
+var upperDetected = 0;
+var lowerDetected = 0;
+for (var k = 0; k < userValue.length; k++) {
+	if (upperCharacter.indexOf(userValue.charAt(k)) != -1) {
+		//window.alert("upper character detected");
+		upperDetected = 1;
+	};
+	if (lowerCharacter.indexOf(userValue.charAt(k)) != -1) {
+		//window.alert("lower character detected");
+		lowerDetected = 1;
+	};
+};
+
+var passwordLength = userValue.length;
+
+var justNumbers = userValue.replace(/[^0-9]/g,"");
+var howManyNumbers = justNumbers.length;
+					
+</script>
+</head>
+</html>

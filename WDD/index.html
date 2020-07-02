@@ -56,6 +56,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			var toQualtrics_SurveyPasswordExactInside;
 			var currentPasswordIsSurveyPasswordExact;
 			var toQualtrics_entropyOfExactReuse;
+			var toQualtrics_numbersDetected;
 			
 			function testFunction() {
 				//window.alert("function triggered");
@@ -233,7 +234,11 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					document.getElementById("PasswordLengthHolder").value = passwordLength; //sends result to form to be submitted
 					toQualtrics_passwordLength = passwordLength;
 					
+					var justNumbers = userValue.replace(/[^0-9]/g,"");
+					var howManyNumbers = justNumbers.length;
+					toQualtrics_numbersDetected = howManyNumbers;
 					
+			
 					
 					
 					participantSucceeded = 1;
@@ -314,7 +319,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 								
 								//original Qualtrics URL: http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD
 								
-								document.getElementById("redirect").value="https://psychadelaide.syd1.qualtrics.com/jfe/form/SV_b11QvrbsHxKOcUR?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group+"&attemptedSurveyPWexact="+toQualtrics_attemptedSurveyPasswordExact+"&SurveyPWexactInside="+toQualtrics_SurveyPasswordExactInside+"&SurveyPWPartial="+toQualtrics_SurveyPasswordPartial+"&entropyOfOrigExactReuse="+toQualtrics_entropyOfExactReuse;
+								document.getElementById("redirect").value="https://psychadelaide.syd1.qualtrics.com/jfe/form/SV_b11QvrbsHxKOcUR?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&numbersUsed="+toQualtrics_numbersDetected+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group+"&attemptedSurveyPWexact="+toQualtrics_attemptedSurveyPasswordExact+"&SurveyPWexactInside="+toQualtrics_SurveyPasswordExactInside+"&SurveyPWPartial="+toQualtrics_SurveyPasswordPartial+"&entropyOfOrigExactReuse="+toQualtrics_entropyOfExactReuse;
 								
 								document.getElementById("widgetu123_input").disabled = "disabled";
 								document.getElementById("widgetu127_input").disabled = "disabled";
