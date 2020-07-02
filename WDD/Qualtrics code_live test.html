@@ -1,0 +1,66 @@
+<html>
+<head>
+<script>
+function runScript() {
+
+	//replace line 12 with the below in qualtrics
+	/*var getQuestionID = this.questionId;
+	alert(getQuestionID);
+	var responseTextField = document.getElementById('QR~' + getQuestionID);
+	var currentResponse = responseTextField.value;*/
+	
+	var currentResponse = document.getElementById("answerInput").value;
+	alert(currentResponse);
+	var justNumbers = currentResponse.replace(/[^0-9]/g,"");
+	var howManyNumbers = justNumbers.length;
+	//alert(howManyNumbers);
+
+	var specialCharacters = "~!@#$%^&*()_+{}|:<>?,./;'[]\-=";
+	var specialCharacterDetected = 0;
+	for (var i = 0; i < currentResponse.length; i++) {
+		if (specialCharacters.indexOf(currentResponse.charAt(i)) != -1) {
+			//window.alert("Special character detected");
+			specialCharacterDetected = 1;
+		
+		};
+	};
+
+	var upperCharacter = "QWERTYUIOPASDFGHJKLZXCVBNM";
+	var lowerCharacter = "qwertyuiopasdfghjklzxcvbnm";
+	var upperDetected = 0;
+	var lowerDetected = 0;
+	for (var k = 0; k < currentResponse.length; k++) {
+		if (upperCharacter.indexOf(currentResponse.charAt(k)) != -1) {
+			//window.alert("upper character detected");
+			upperDetected = 1;
+		};
+		if (lowerCharacter.indexOf(currentResponse.charAt(k)) != -1) {
+			//window.alert("lower character detected");
+			lowerDetected = 1;
+		};
+	};
+	
+	
+
+	alert("Numbers present: "+howManyNumbers+"; and special character detected: "+specialCharacterDetected+" and upper case deteced: "+upperDetected+" and lower detected: "+lowerDetected);
+	
+	if (howManyNumbers > 0 && specialCharacterDetected == 1 && upperDetected == 1 && lowerDetected == 1) {
+		alert("Meets criteria");
+		var meetsCriteria = 1;
+		Qualtrics.SurveyEngine.setEmbeddedData( 'passwordMeetsCriteria',true);
+	} else {
+		var meetsCriteria = 0;
+		alert("Does not meet criteria");
+		Qualtrics.SurveyEngine.setEmbeddedData( 'passwordMeetsCriteria',false);
+	};
+	
+};	
+					
+</script>
+</head>
+
+<body>
+<label for="answerInput">Answer:</label>
+<input type="text" id="answerInput" name="answerInput" onFocusOut="runScript()">
+</body>
+</html>
