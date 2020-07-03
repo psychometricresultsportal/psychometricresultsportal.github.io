@@ -110,7 +110,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				
 				var userPasswordForComparison = document.getElementById("widgetu127_input").value;
-				window.alert(userPasswordForComparison);
+				//window.alert(userPasswordForComparison);
 				if (userPasswordForComparison.toUpperCase() == "HOT$UMMER" || userPasswordForComparison.toUpperCase() == "HOTSUMMER" || userPasswordForComparison.toUpperCase() == "H0TSUMMER" || userPasswordForComparison.toUpperCase() == "H0T$UMMER" || userPasswordForComparison.toUpperCase() == "H0T$UMMER~475" || userPasswordForComparison.toUpperCase() == "~HOTSUMMER1321" || userPasswordForComparison.toUpperCase() == "H2T#UMMER" || userPasswordForComparison.toUpperCase() == "H4T#UMMER") {
 					attemptedSurveyPasswordExact = 1;
 					toQualtrics_attemptedSurveyPasswordExact = 1;
@@ -118,41 +118,41 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					var exactReuse_participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
 					//var exactReuse_userPassword = document.getElementById("widgetu127_input"); //get the entered password
 					var exactReuse_userValue = userPasswordForComparison;
-					window.alert("exactReuse_userValue is "+exactReuse_userValue);
+					//window.alert("exactReuse_userValue is "+exactReuse_userValue);
 					
 					var exactReuse_result = zxcvbn(exactReuse_userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
-					window.alert("exactReuse_result is "+exactReuse_result);
+					//window.alert("exactReuse_result is "+exactReuse_result);
 					
 					var exactReuse_score2 = exactReuse_result.score;
 					var exactReuse_numGuesses = exactReuse_result.guesses;
 					var exactReuse_numGuessesLog10 = exactReuse_result.guesses_log10;
-					window.alert("exactReuse_score2 is "+exactReuse_score2);
-					window.alert("exactReuse_numGuesses is "+exactReuse_numGuesses);
-					window.alert("exactReuse_numGuessesLog10 is "+exactReuse_numGuessesLog10);
+					//window.alert("exactReuse_score2 is "+exactReuse_score2);
+					//window.alert("exactReuse_numGuesses is "+exactReuse_numGuesses);
+					//window.alert("exactReuse_numGuessesLog10 is "+exactReuse_numGuessesLog10);
 					
 					toQualtrics_entropyOfExactReuse = "OrigExactReusePWscoreIs"+exactReuse_score2+"numGuessesIs"+exactReuse_numGuesses+"log10is"+exactReuse_numGuessesLog10;
 					
-					window.alert("toQualtrics_entropyOfExactReuse is "+toQualtrics_entropyOfExactReuse);
+					//window.alert("toQualtrics_entropyOfExactReuse is "+toQualtrics_entropyOfExactReuse);
 					
 					window.alert("It looks like you have entered the password we gave you in the study. Please choose your own password");
-					window.alert(toQualtrics_attemptedSurveyPasswordExact);
+					//window.alert(toQualtrics_attemptedSurveyPasswordExact);
 				} else {
 					attemptedSurveyPasswordExact = 0;
 					currentPasswordIsSurveyPasswordExact = 0;
 				}; //the above IF ELSE statements checks Exact reuse - i.e., if the password entered exactly matches the passwords we gave in experiment B_mentalAdjustment. Case is ignored using toUpperCase as we had them enter various combinations of case in the study. If it does match, it blocks this action but records that an exact match was attempted. We can later check this as a type of reuse. (and a more objective measure of reuse than the post-portal item)
 				
 				
-				window.alert("current password is exact reuse: "+currentPasswordIsSurveyPasswordExact);
+				//window.alert("current password is exact reuse: "+currentPasswordIsSurveyPasswordExact);
 				if (currentPasswordIsSurveyPasswordExact == 0) {
 					if (userPasswordForComparison.toUpperCase().includes("HOTSUMMER") == true || userPasswordForComparison.toUpperCase().includes("H0T$UMMER") == true || userPasswordForComparison.toUpperCase().includes("HOT$UMMER") || userPasswordForComparison.toUpperCase().includes("H0TSUMMER") || userPasswordForComparison.toUpperCase().includes("H0T$UMMER~475") || userPasswordForComparison.toUpperCase().includes("~HOTSUMMER1321") || userPasswordForComparison.toUpperCase().includes("H2T#UMMER") || userPasswordForComparison.toUpperCase().includes("H4T#UMMER")) {
 						SurveyPasswordExactInside = 1;
 						toQualtrics_SurveyPasswordExactInside = 1;
-						window.alert("the provided password contained an exact reuse inside it");
+						//window.alert("the provided password contained an exact reuse inside it");
 					}; //the above IF statement checks if the provided password *contains* one of the passwords provided in the study. For example, the password HotSummer123 would return TRUE here, but FALSE at the exact-reuse IF statement. Passwords that fit this category are kind-of partial reuses, but might be close-enough to exact reuses that we consider them exact (that is, we might think hotsummer12 is functionally the same as hotsummer). Therefore, this is being recorded separately for separate analysis after data collection if needed.
 					
 					
 					if (userPasswordForComparison.toUpperCase().includes("SUMMER") == true || userPasswordForComparison.toUpperCase().includes("$UMMER") == true || userPasswordForComparison.toUpperCase().includes("HOT") == true || userPasswordForComparison.toUpperCase().includes("H0T") == true) {
-						window.alert("partial reuse detected");
+						//window.alert("partial reuse detected");
 						toQualtrics_SurveyPasswordPartial = 1;
 					}; //the above IF statement checks if the entered password matches, at least partially, one of the passwords provided in the survey.
 				};

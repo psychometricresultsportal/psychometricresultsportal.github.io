@@ -44,7 +44,8 @@ function runScript() {
 
 	alert("Numbers present: "+howManyNumbers+"; and special character detected: "+specialCharacterDetected+" and upper case deteced: "+upperDetected+" and lower detected: "+lowerDetected);
 	
-	if (howManyNumbers > 0 && specialCharacterDetected == 1 && upperDetected == 1 && lowerDetected == 1) {
+	/*if (howManyNumbers > 0 && specialCharacterDetected == 1 && upperDetected == 1 && lowerDetected == 1)*/
+	if (howManyNumbers > 0 && (upperDetected == 1 || lowerDetected == 1)) {
 		alert("Meets criteria");
 		var meetsCriteria = 1;
 		Qualtrics.SurveyEngine.setEmbeddedData( 'passwordMeetsCriteria',true);
