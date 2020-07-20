@@ -124,7 +124,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				
 				var userPasswordForComparison = document.getElementById("widgetu127_input").value;
-				window.alert("userPWforComparison is " + userPasswordForComparison);
+				//window.alert("userPWforComparison is " + userPasswordForComparison);
 				if (userPasswordForComparison.toUpperCase() == "HOT$UMMER" || userPasswordForComparison.toUpperCase() == "HOTSUMMER" || userPasswordForComparison.toUpperCase() == "H0TSUMMER" || userPasswordForComparison.toUpperCase() == "H0T$UMMER" || userPasswordForComparison.toUpperCase() == "H0T$UMMER~475" || userPasswordForComparison.toUpperCase() == "~HOTSUMMER1321" || userPasswordForComparison.toUpperCase() == "H2T#UMMER" || userPasswordForComparison.toUpperCase() == "H4T#UMMER") {
 					attemptedSurveyPasswordExact = 1;
 					toQualtrics_attemptedSurveyPasswordExact = 1;
@@ -173,13 +173,13 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				if (PwManagerDetected == 0 && attemptedSurveyPasswordExact != 1) {
 					//now that the password manager, if any, has been blocked, this function gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server. The same is done for the complexity of the password.
-					window.alert("pw tests done, starting main script");
+					//window.alert("pw tests done, starting main script");
 					
 					document.getElementById("ShownIfPwManagerDetected").style.visibility = "hidden";
 					var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
 					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
 					var userValue = userPassword.value;
-					window.alert("user value is" + userValue);
+					//window.alert("user value is" + userValue);
 					
 					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
 					//window.alert(result);
@@ -187,7 +187,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					var numGuesses = result.guesses;
 					var numGuessesLog10 = result.guesses_log10;
 					//window.alert(numGuesses);
-					window.alert("score2 is" + score2);
+					//window.alert("score2 is" + score2);
 					document.getElementById("valueOfChosen").value = score2;
 					
 					toQualtrics_passwordStrength = score2;
@@ -307,24 +307,24 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			}
 			
 			function successFunction() { //used to run onsubmit from form. now onclick from button
-				window.alert("success function started")
+				//window.alert("success function started")
 				var passwordHasContent = document.getElementById("widgetu127_input").value;
-				window.alert("password is " + passwordHasContent);
+				//window.alert("password is " + passwordHasContent);
 				//var emailHasContent = document.getElementById("email_input").value;
 				//window.alert("username is " + emailHasContent);
 				participantIDhasContent = document.getElementById("widgetu123_input").value;
-				window.alert("participant ID is " + participantIDhasContent);
+				//window.alert("participant ID is " + participantIDhasContent);
 				
 				if (participantIDhasContent != "") {
 					//window.alert("participant ID is " + participantIDhasContent)
 					
 					
 					if (passwordHasContent != "") {
-							window.alert("calling getPassword function");
+							//window.alert("calling getPassword function");
 							getPassword();
-							window.alert("get password script completed");
+							//window.alert("get password script completed");
 							if (participantSucceeded == 1) {
-								window.alert("reached PSucc=1");
+								//window.alert("reached PSucc=1");
 								document.getElementById("u132-4").style.visibility = "hidden"; //hides submit button
 								
 								document.getElementById("widgetu127_input").type = "password";
