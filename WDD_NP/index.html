@@ -124,7 +124,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				
 				var userPasswordForComparison = document.getElementById("widgetu127_input").value;
-				//window.alert(userPasswordForComparison);
+				window.alert("userPWforComparison is " + userPasswordForComparison);
 				if (userPasswordForComparison.toUpperCase() == "HOT$UMMER" || userPasswordForComparison.toUpperCase() == "HOTSUMMER" || userPasswordForComparison.toUpperCase() == "H0TSUMMER" || userPasswordForComparison.toUpperCase() == "H0T$UMMER" || userPasswordForComparison.toUpperCase() == "H0T$UMMER~475" || userPasswordForComparison.toUpperCase() == "~HOTSUMMER1321" || userPasswordForComparison.toUpperCase() == "H2T#UMMER" || userPasswordForComparison.toUpperCase() == "H4T#UMMER") {
 					attemptedSurveyPasswordExact = 1;
 					toQualtrics_attemptedSurveyPasswordExact = 1;
@@ -173,13 +173,13 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				
 				if (PwManagerDetected == 0 && attemptedSurveyPasswordExact != 1) {
 					//now that the password manager, if any, has been blocked, this function gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server. The same is done for the complexity of the password.
-					//window.alert("get password function started");
+					window.alert("pw tests done, starting main script");
 					
 					document.getElementById("ShownIfPwManagerDetected").style.visibility = "hidden";
 					var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
 					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
 					var userValue = userPassword.value;
-					//window.alert(userValue);
+					window.alert("user value is" + userValue);
 					
 					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
 					//window.alert(result);
@@ -187,7 +187,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 					var numGuesses = result.guesses;
 					var numGuessesLog10 = result.guesses_log10;
 					//window.alert(numGuesses);
-					//window.alert(score2);
+					window.alert("score2 is" + score2);
 					document.getElementById("valueOfChosen").value = score2;
 					
 					toQualtrics_passwordStrength = score2;
@@ -309,18 +309,22 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			function successFunction() { //used to run onsubmit from form. now onclick from button
 				window.alert("success function started")
 				var passwordHasContent = document.getElementById("widgetu127_input").value;
-				var emailHasContent = document.getElementById("email_input").value;
+				window.alert("password is " + passwordHasContent);
+				//var emailHasContent = document.getElementById("email_input").value;
+				//window.alert("username is " + emailHasContent);
 				participantIDhasContent = document.getElementById("widgetu123_input").value;
+				window.alert("participant ID is " + participantIDhasContent);
 				
 				if (participantIDhasContent != "") {
 					//window.alert("participant ID is " + participantIDhasContent)
 					
 					
 					if (passwordHasContent != "") {
-							//window.alert("password entered is" + passwordHasContent)
+							window.alert("calling getPassword function");
 							getPassword();
-						
+							window.alert("get password script completed");
 							if (participantSucceeded == 1) {
+								window.alert("reached PSucc=1");
 								document.getElementById("u132-4").style.visibility = "hidden"; //hides submit button
 								
 								document.getElementById("widgetu127_input").type = "password";
@@ -448,9 +452,18 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 	 					A password manager was detected. Please enter a password of your own choosing.
 					 </div>
 
-					
+					<input class="wrapped-input" type="hidden" id="PwManagerDetectedHolder" name="PwManagerDetectedHolder" tabindex="2" value="0"> <!-- says whether a password manager was detected so it is submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="SpecialCharactersDetectedHolder" name="SpecialCharactersDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of special characters to be submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="PassphraseDetectedHolder" name="PassphraseDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of space characters to be submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="UpperDetectedHolder" name="UpperDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of upper case characters to be submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="LowerDetectedHolder" name="LowerDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="PasswordLengthHolder" name="PasswordLengthHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="NumGuessesHolder" name="NumGuessesHolder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
+					<input class="wrapped-input" type="hidden" id="NumGuessesLog10Holder" name="NumGuessesLog10Holder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
+					<input type="hidden" name="_redirect" id="redirect" />
 				</form>
 			</div>
+			<input type="hidden" id="valueOfChosen" value="holderValue" >
 		</div>
 	</div>
 	

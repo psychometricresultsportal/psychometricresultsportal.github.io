@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="nojs html css_verticalspacer" lang="en-US">
+ <head>
+
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+  <meta name="generator" content="2018.1.0.386"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <script type="text/javascript">
+   // Update the 'nojs'/'js' class on the html node
+document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
+
+// Check that all required assets are uploaded and up-to-date
+if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "webpro.js", "jquery.watch.js", "require.js", "index.css"], "outOfDate":[]};
+</script>
+  
+  <title>Home</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=444006867"/>
+  <link rel="stylesheet" type="text/css" href="css/index.css?crc=4179474402" id="pagesheet"/>
+  <!-- JS includes -->
+  <script src="https://use.typekit.net/ik/EUvyzA38CFUa6bioDW3lkb7l-_BZJusnj1vNH4pBSOvfeC6gfOkP766PHQIaF2jaFDMtWDgKjRbUFRw3jRF8wRqawQ8RZ2JUwRbUjcbXwAjtF2SXe1I7O1gDpAFGdhu8iY4Tja48SamCiYF3da4XjA30Zh8X-YmKOc8zOYgDpAFGdhu8iY4Tja48SamCiYF3da4XjA30Zh8X-YmKOc8zOYiaiko3Sa8R-eNlZWsk-AFkZWFudYsDSeNkieBCOciTieyujKoTdkJHdAN0iYF8S14yifGHfF-qMyMMeM96MqGIQWmDZZMg6NcTa39.js" type="text/javascript"></script>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   try {Typekit.load();} catch(e) {}
+</script>
+<script type="text/javascript" src="assets/zxcvbn.js"></script>
+<script type="text/javascript"> 
+
+//NOTE: This site is to be used for data collection in a study by the University of Adelaide (Australia). Participants enter a password below, but this does not leave the client machine. Instead, the strength of the password chosen is analysed client-side. ONLY the strength of the password (and some basic data, such as whether a special character was used) is sent to our survey (Qualtrics). You can see the specifics of this in the getPassword() function. Please contact the researcher at a1629120@adelaide.edu.au for any issues. This study has received ethics approval from the University of Adelaide HREC. This message will be removed before data collection begins
+
+
+			var startTime;
+			var endTime;
+			var PwManagerDetected;
+			var hasCheckRun = 0;
+			var participantSucceeded = 0;
+			var participantIDhasContent = "";
+			var noTimesFunctionRun = 0;
+			
+			var toQualtrics_passwordStrength;
+			var toQualtrics_passwordLength;
+			var toQualtrics_upperCaseUsed;
+			var toQualtrics_lowerCaseUsed;
+			var toQualtrics_passwordManagerDetected;
+			var toQualtrics_numberOfGuessesNeeded;
+			var toQualtrics_noGuessesLog10;
+			var toQualtrics_specialCharacterDetected;
+			var toQualtrics_passphraseDetected;
+			var toQualtrics_group;
+			
+			
+			function testFunction() {
+				//window.alert("function triggered");
+				if (hasCheckRun === 0) {
+					startTime = new Date();
+					hasCheckRun = 1;
+					noTimesFunctionRun = noTimesFunctionRun + 1;
+				} else {
+					endTime = new Date();
+					noTimesFunctionRun = noTimesFunctionRun + 1;
+					}
+			};
+			
+			
+			
+			//function startTime() {
+				//window.alert("timer function started");
+				//if (hasCheckRun == 1) {
+					//endTime = new Date();
+					//window.alert("end time logged");
+				//};
+				//if (hasCheckRun == 0) {
+					//window.alert("new start time logged")
+					//hasCheckRun = 1;
+					//window.alert("checkPwManager function started");
+					//window.alert(hasCheckRun);
+					//startTime = new Date();
+					//window.alert("checkPwManager function has set start time to " + startTime);
+				//};
+				
+			//};
+			
+			
+			function getPassword() {
+				//window.alert("get Password function started");
+				//window.alert("start time is understood as " + startTime);
+				//window.alert("final end time is understood as " + endTime);
+				
+				var timeDiff = endTime - startTime; //in ms
+				//window.alert("the time difference is " + timeDiff);
+				
+				//window.alert("the number of times run is" + noTimesFunctionRun);
+				
+				if (timeDiff < 500 || noTimesFunctionRun <= 5) {
+					PwManagerDetected = 1;
+				} else {
+					PwManagerDetected = 0;
+					//window.alert("no pw manager detected");
+				};
+				
+				if (PwManagerDetected == 0) {
+					//now that the password manager, if any, has been blocked, this function gets value of entered password, checks strength and saves as value: score2. The score overwrites the password field to be submitted to the server. The same is done for the complexity of the password.
+					//window.alert("get password function started");
+					
+					document.getElementById("ShownIfPwManagerDetected").style.visibility = "hidden";
+					var participantIDforComparison = document.getElementById("widgetu123_input").value; //get entered ID to add to zxcvbn dictionary
+					var userPassword = document.getElementById("widgetu127_input"); //get the entered password
+					var userValue = userPassword.value;
+					//window.alert(userValue);
+					
+					var result = zxcvbn(userValue, user_inputs=[participantIDforComparison]); //run password through zxcvbn including our personalised dictionary 
+					//window.alert(result);
+					var score2 = result.score;
+					var numGuesses = result.guesses;
+					var numGuessesLog10 = result.guesses_log10;
+					//window.alert(numGuesses);
+					//window.alert(score2);
+					document.getElementById("valueOfChosen").value = score2;
+					
+					toQualtrics_passwordStrength = score2;
+					
+					//window.alert("score script completed");
+					document.getElementById("u132-4").disabled = false;
+					//window.alert(document.getElementById("u132-4").disabled);
+					document.getElementById("NumGuessesHolder").value = numGuesses;
+					document.getElementById("NumGuessesLog10Holder").value = numGuessesLog10;
+					
+					toQualtrics_numberOfGuessesNeeded = numGuesses;
+					toQualtrics_noGuessesLog10 = numGuessesLog10;
+					
+					var specialCharacters = "~!@#$%^&*()_+{}|:<>?,./;'[]\-=";
+					var specialCharacterDetected = 0;
+					for (var i = 0; i < userValue.length; i++) {
+						if (specialCharacters.indexOf(userValue.charAt(i)) != -1) {
+							//window.alert("Special character detected");
+							specialCharacterDetected = 1;
+							
+						};
+					};
+					document.getElementById("SpecialCharactersDetectedHolder").value = specialCharacterDetected; //sends result to form to be submitted
+					toQualtrics_specialCharacterDetected = specialCharacterDetected;
+					
+					var spaceCharacter = " ";
+					var passphraseDetected = 0;
+					for (var j = 0; j < userValue.length; j++) {
+						if (spaceCharacter.indexOf(userValue.charAt(j)) != -1) {
+							//window.alert("Space character detected");
+							passphraseDetected = 1;
+							
+						};
+					};
+					document.getElementById("PassphraseDetectedHolder").value = passphraseDetected; //sends result to form to be submitted
+					toQualtrics_passphraseDetected = passphraseDetected;
+					
+					var upperCharacter = "QWERTYUIOPASDFGHJKLZXCVBNM";
+					var lowerCharacter = "qwertyuiopasdfghjklzxcvbnm";
+					var upperDetected = 0;
+					var lowerDetected = 0;
+					for (var k = 0; k < userValue.length; k++) {
+						if (upperCharacter.indexOf(userValue.charAt(k)) != -1) {
+							//window.alert("upper character detected");
+							upperDetected = 1;
+						};
+						if (lowerCharacter.indexOf(userValue.charAt(k)) != -1) {
+							//window.alert("lower character detected");
+							lowerDetected = 1;
+						};
+					};
+					document.getElementById("UpperDetectedHolder").value = upperDetected; //sends result to form to be submitted
+					toQualtrics_upperCaseUsed = upperDetected;
+					document.getElementById("LowerDetectedHolder").value = lowerDetected; //sends result to form to be submitted
+					toQualtrics_lowerCaseUsed = lowerDetected;
+					
+					var passwordLength = userValue.length;
+					document.getElementById("PasswordLengthHolder").value = passwordLength; //sends result to form to be submitted
+					toQualtrics_passwordLength = passwordLength;
+					
+					
+					
+					
+					participantSucceeded = 1;
+					
+				};
+				
+				if (PwManagerDetected == 1) {
+					window.alert("We have detected you are using a password manager or browser auto-fill. Please create your own password");
+					//document.getElementById("u132-4").disabled = true;
+					//window.alert(document.getElementById("u132-4").disabled);
+					document.getElementById("PwManagerDetectedHolder").value = "1";
+					toQualtrics_passwordManagerDetected = "1";
+					
+					var getDiv = document.getElementById("ShownIfPwManagerDetected");
+					getDiv.style.display = "block";
+					//document.getElementById("widgetu127_input").value = none;
+				}
+			}; 
+				
+			function getQueryVariable(variable) {
+					var query = window.location.search.substring(1);
+					var vars = query.split("&");
+					for (var i=0;i<vars.length;i++) {
+						var pair = vars[i].split("=");
+						if(pair[0] == variable){return pair[1];}
+					}
+					return(false);
+					}
+					
+			function setClicked0() {
+				var clickedSubmit = 0;
+				//window.alert("onload function started");
+				
+				document.getElementById("ShownIfPwManagerDetected").style.display = "none";
+				
+				document.getElementById("participantIDrequiredDiv").style.display = "none";
+				document.getElementById("passwordRequiredDiv").style.display = "none";
+				
+				//now get participant ID from URL and pass to participant ID field
+				
+				var participantIDfromQualtrics = getQueryVariable("id");
+				//window.alert(participantIDfromQualtrics);
+				
+				//now get group from URL and ready to be sent back to Qualtrics
+				toQualtrics_group = getQueryVariable("group");
+				//window.alert("group is "+toQualtrics_group);
+				
+				if (participantIDfromQualtrics != false) {
+					document.getElementById("widgetu123_input").value = participantIDfromQualtrics;
+				}
+			}
+			
+			function successFunction() { //used to run onsubmit from form. now onclick from button
+				//window.alert("success function started")
+				var passwordHasContent = document.getElementById("widgetu127_input").value;
+				var emailHasContent = document.getElementById("email_input").value;
+				participantIDhasContent = document.getElementById("widgetu123_input").value;
+				
+				if (participantIDhasContent != "") {
+					//window.alert("participant ID is " + participantIDhasContent)
+					
+					
+					if (passwordHasContent != "") {
+							//window.alert("password entered is" + passwordHasContent)
+							getPassword();
+						
+							if (participantSucceeded == 1) {
+								document.getElementById("u132-4").style.visibility = "hidden"; //hides submit button
+								
+								document.getElementById("widgetu127_input").type = "password";
+								document.getElementById("widgetu123_input").readOnly = "true";
+								document.getElementById("widgetu127_input").readOnly = "true";
+								document.getElementById("checkbox1").disabled = "disabled";
+								document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
+								
+								//now redirects back to Qualtrics and passes on the succeeded message
+								//window.location.replace("http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent);
+								
+								//original Qualtrics URL: http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD
+								
+								document.getElementById("redirect").value="http://adelaide.qualtrics.com/jfe/form/SV_07leXJ9GrTJuZcF?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group;
+								
+								document.getElementById("widgetu123_input").disabled = "disabled";
+								document.getElementById("widgetu127_input").disabled = "disabled";
+								
+								window.location.href = document.getElementById("redirect").value;
+							  	
+								//document.getElementById("widgetu116").submit();
+								
+								//document.getElementById("redirect").value = "http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD?succeeded=success&participantIDreturned="+participantIDhasContent;
+								
+								//also passes participant ID back
+								};
+							
+						} else {
+							//window.alert("no password entered");
+							document.getElementById("passwordRequiredDiv").style.display = "block";
+							};
+					} else {
+						//window.alert("no participant ID entered");
+						document.getElementById("participantIDrequiredDiv").style.display = "block";
+						};
+				
+				
+				};
+			
+			//function setClicked1() { //build into successfunction()
+				//window.alert("setclicked1 function started");
+				//setClicked = 1;
+				
+				//document.getElementById("widgetu116").submit();
+				//var currentPassword = document.getElementById("widgetu127_input").value;
+				//if (participantIDhasContent != "" && currentPassword != "") { // this disables the password field and toggle and overwrites the chosen password with the score achieved. This should come after all checks have been done but before form submission.
+				
+					//document.getElementById("widgetu127_input").type = "password";
+					//document.getElementById("widgetu123_input").readOnly = "true";
+					//document.getElementById("widgetu127_input").readOnly = "true";
+					//document.getElementById("checkbox1").disabled = "disabled";
+					//document.getElementById("widgetu127_input").value = document.getElementById("valueOfChosen").value;
+					//};
+				
+				
+				
+			function togglePasswordVisibility() {
+				if(document.getElementById("checkbox1").checked == true){
+					document.getElementById("widgetu127_input").type = "text";
+				}else{
+					document.getElementById("widgetu127_input").type = "password";
+				}
+				}
+				
+			
+		</script>
+   </head>
+ <body onload="setClicked0()">
+
+ 
+ 
+  <div class="clearfix borderbox" id="page"><!-- column -->
+   <div class="clearfix colelem" id="u94-4"><!-- content -->
+    <p>Please register</p>
+   </div>
+   <div class="clearfix colelem" id="u95-5">
+   <!--<p><i><strong>NOTE: This site is to be used for data collection in a study by the University of Adelaide (Australia). Participants enter a password below, but this does not leave the client machine. Instead, the strength of the password chosen is analysed client-side. ONLY the strength of the password (and some basic data, such as whether a special character was used) is sent to our survey (Qualtrics). You can see the specifics of this in the getPassword() function. Please contact the researcher at a1629120@adelaide.edu.au for any issues. This study has received ethics approval from the University of Adelaide HREC. This message will be removed before data collection begins</strong></i></p><br><br>-->
+	<p>Here you can access the remainder of the survey and go in the draw to win one of 3x$100 gift cards.</p>
+	<br>
+	<p> Note: You will need to log into this portal on a later date to check if you have won.</p>
+	<p> You will also need to complete the remainder of the survey to be eligible</p>
+	<br>
+   </div>
+   <form id="widgetu116" method="post" enctype="multipart/form-data" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
+    <div class="position_content" id="widgetu116_position_content">
+     <div class="fld-grp clearfix colelem" id="widgetu123" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
+      <div class="clearfix colelem" id="pu125-4"><!-- group -->
+       <label class="fld-label actAsDiv clearfix grpelem" id="u125-4" for="widgetu123_input"><!-- content --><span class="actAsPara">Participant ID:</span></label>
+       <div class="fld-message clearfix grpelem" id="u124-4"><!-- content -->
+        <p>Required</p>
+       </div>
+	   
+	   
+	   
+      </div>
+      <span class="fld-input NoWrap actAsDiv clearfix colelem" id="u126-4"><!-- content --><div id="u126-3"><input class="wrapped-input" type="text" spellcheck="false" id="widgetu123_input" readOnly="true" name="participantID" tabindex="1"/><label class="wrapped-input fld-prompt" id="widgetu123_prompt" for="widgetu123_input"><span class="actAsPara">Enter Participant ID</span></label></div></span>
+     </div>
+	 
+	 <div id="participantIDrequiredDiv"><!-- content -->
+        <p style="color:red; font-weight:bold">Participant ID required</p>
+       </div>
+	 
+	 
+     <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx"><!-- none box -->
+      <div class="clearfix colelem" id="pu128-4"><!-- group -->
+       <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><!-- content --><span class="actAsPara">Create a new password:</span></label>
+       <div class="fld-message clearfix grpelem" id="u130-4"><!-- content -->
+        <p>Required</p>
+       </div>
+      </div>
+      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><!-- content --><div id="u129-3"><input class="wrapped-input" type="password" id="widgetu127_input" oninput="testFunction()" onblur="testFunction()" name="password" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Create a password</span></label></div></span>
+	  
+	  <label class="fld-label actAsDiv clearfix grpelem" id="note"><!-- content --><span class="actAsPara"><i>Note: this is NOT your prolific password</i> </span></label>
+     <div style="float:right"><input type="checkbox" id="checkbox1" onchange="togglePasswordVisibility()">Show password</div>
+	 </div>
+	 
+	 
+	 
+	 <div id="passwordRequiredDiv"><!-- content -->
+        <p style="color:red; font-weight:bold">Password required.</p>
+       </div>
+	 
+	 <div id="ShownIfPwManagerDetected">
+	 A password manager was detected. Please enter a password of your own choosing.
+	 </div>
+	 
+	 <div class="fld-grp clearfix colelem" id="widgetu127" data-required="true" data-sizePolicy="fluidWidth" data-pintopage="page_fluidx" style="display:none">
+      <div class="clearfix colelem" id="pu128-4">
+       <label class="fld-label actAsDiv clearfix grpelem" id="u128-4" for="widgetu127_input"><span class="actAsPara">Email:</span></label>
+       
+      </div>
+      <span class="fld-textarea actAsDiv clearfix colelem" id="u129-4"><div id="u129-3"><input class="wrapped-input" type="text" id="email_input" name="email_input" tabindex="2"></textarea><label class="wrapped-input fld-prompt" id="widgetu127_prompt" for="widgetu127_input"><span class="actAsPara">Enter your email address</span></label></div></span>
+	  <div id="emailWarning" style="text-align:left; margin:auto; width:auto; indent:0px; font-size:11px">
+        <p>Your email is required to enter the draw. Leave blank if you do not wish to enter.</p>
+		<p>Your email will be used for no other purpose than contacting you if you have won.</p>
+       </div>
+	 </div>
+	
+	 
+	 
+	  
+     <div class="clearfix colelem" id="pu121-4"><!-- group -->
+      <div class="clearfix grpelem" id="u121-4"><!-- content -->
+       <p>Submitting...</p>
+      </div>
+	  <button class="submit-btn NoWrap rounded-corners clearfix grpelem" id="u132-4" type="button" value="Submit" tabindex="3" onclick="successFunction()"><!-- content -->
+       <div style="margin-top:-12px;height:12px;">
+        <p>Create account</p>
+       </div>
+      </button>
+      <div class="holder" id="u131-4"><!-- content -->
+       <p>Success! YOUR CONFIRMATION CODE IS 01. Please leave this tab open and return to the survey. <br> You have entered the draw. Note: You will only be eligible to win if you complete the remainder of the survey. </p>
+      </div>
+      <div class="clearfix grpelem" id="u122-4"><!-- content -->
+       <p>Form received.</p>
+      </div>
+      
+     </div>
+    </div>
+	
+	<input class="wrapped-input" type="hidden" id="PwManagerDetectedHolder" name="PwManagerDetectedHolder" tabindex="2" value="0"> <!-- says whether a password manager was detected so it is submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="SpecialCharactersDetectedHolder" name="SpecialCharactersDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of special characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="PassphraseDetectedHolder" name="PassphraseDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of space characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="UpperDetectedHolder" name="UpperDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of upper case characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="LowerDetectedHolder" name="LowerDetectedHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="PasswordLengthHolder" name="PasswordLengthHolder" tabindex="2" value="UnSet"> <!-- as above, allows the detection of lower case characters to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="NumGuessesHolder" name="NumGuessesHolder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
+	<input class="wrapped-input" type="hidden" id="NumGuessesLog10Holder" name="NumGuessesLog10Holder" tabindex="2" value="UnSet"> <!-- as above, allows the number of guesses required to guess the password to be submitted in the form -->
+	<input type="hidden" name="_redirect" id="redirect" />
+	
+   </form>
+   <div class="verticalspacer" data-offset-top="481" data-content-above-spacer="480" data-content-below-spacer="61" data-sizePolicy="fixed" data-pintopage="page_fixedLeft"></div>
+  </div>
+  <input type="hidden" id="valueOfChosen" value="holderValue" >
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   // Decide whether to suppress missing file error or not based on preference setting
+var suppressMissingFileError = false
+</script>
+  <script type="text/javascript">
+   window.Muse.assets.check=function(c){if(!window.Muse.assets.checked){window.Muse.assets.checked=!0;var b={},d=function(a,b){if(window.getComputedStyle){var c=window.getComputedStyle(a,null);return c&&c.getPropertyValue(b)||c&&c[b]||""}if(document.documentElement.currentStyle)return(c=a.currentStyle)&&c[b]||a.style&&a.style[b]||"";return""},a=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),
+16);return 0},f=function(f){for(var g=document.getElementsByTagName("link"),j=0;j<g.length;j++)if("text/css"==g[j].type){var l=(g[j].href||"").match(/\/?css\/([\w\-]+\.css)\?crc=(\d+)/);if(!l||!l[1]||!l[2])break;b[l[1]]=l[2]}g=document.createElement("div");g.className="version";g.style.cssText="display:none; width:1px; height:1px;";document.getElementsByTagName("body")[0].appendChild(g);for(j=0;j<Muse.assets.required.length;){var l=Muse.assets.required[j],k=l.match(/([\w\-\.]+)\.(\w+)$/),i=k&&k[1]?
+k[1]:null,k=k&&k[2]?k[2]:null;switch(k.toLowerCase()){case "css":i=i.replace(/\W/gi,"_").replace(/^([^a-z])/gi,"_$1");g.className+=" "+i;i=a(d(g,"color"));k=a(d(g,"backgroundColor"));i!=0||k!=0?(Muse.assets.required.splice(j,1),"undefined"!=typeof b[l]&&(i!=b[l]>>>24||k!=(b[l]&16777215))&&Muse.assets.outOfDate.push(l)):j++;g.className="version";break;case "js":j++;break;default:throw Error("Unsupported file type: "+k);}}c?c().jquery!="1.8.3"&&Muse.assets.outOfDate.push("jquery-1.8.3.min.js"):Muse.assets.required.push("jquery-1.8.3.min.js");
+g.parentNode.removeChild(g);if(Muse.assets.outOfDate.length||Muse.assets.required.length)g="Some files on the server may be missing or incorrect. Clear browser cache and try again. If the problem persists please contact website author.",f&&Muse.assets.outOfDate.length&&(g+="\nOut of date: "+Muse.assets.outOfDate.join(",")),f&&Muse.assets.required.length&&(g+="\nMissing: "+Muse.assets.required.join(",")),suppressMissingFileError?(g+="\nUse SuppressMissingFileError key in AppPrefs.xml to show missing file error pop up.",console.log(g)):alert(g)};location&&location.search&&location.search.match&&location.search.match(/muse_debug/gi)?
+setTimeout(function(){f(!0)},5E3):f()}};
+var muse_init=function(){require.config({baseUrl:""});require(["jquery","museutils","whatinput","webpro","jquery.watch"],function(c){var $ = c;$(document).ready(function(){try{
+window.Muse.assets.check($);/* body */
+Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+Muse.Utils.prepHyperlinks(true);/* body */
+Muse.Utils.makeButtonsVisibleAfterSettingMinWidth();/* body */
+Muse.Utils.initWidget('#widgetu116', ['#bp_infinity'], function(elem) { return new WebPro.Widget.Form(elem, {validationEvent:'submit',errorStateSensitivity:'high',fieldWrapperClass:'fld-grp',formSubmittedClass:'frm-sub-st',formErrorClass:'frm-subm-err-st',formDeliveredClass:'frm-subm-ok-st',notEmptyClass:'non-empty-st',focusClass:'focus-st',invalidClass:'fld-err-st',requiredClass:'fld-err-st',ajaxSubmit:true}); });/* #widgetu116 */
+Muse.Utils.fullPage('#page');/* 100% height page */
+Muse.Utils.showWidgetsWhenReady();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+}catch(b){if(b&&"function"==typeof b.notify?b.notify():Muse.Assert.fail("Error calling selector function: "+b),false)throw b;}})})};
+
+</script>
+  <!-- RequireJS script -->
+  <script src="scripts/require.js?crc=7928878" type="text/javascript" async data-main="scripts/museconfig.js?crc=310584261" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
+   </body>
+</html>
