@@ -62,6 +62,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 			var toQualtrics_specialCharacterDetected;
 			var toQualtrics_passphraseDetected;
 			var toQualtrics_group;
+			var toQualtrics_DCSource;
 			var attemptedSurveyPasswordExact;
 			var SurveyPasswordPartialReuse;
 			var SurveyPasswordExactInside;
@@ -297,9 +298,17 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 				var participantIDfromQualtrics = getQueryVariable("id");
 				//window.alert(participantIDfromQualtrics);
 				
+				//now get source, CYAN or regular, and pass to variable to change redirect URL
+				
+				//var dataCollectSourceFromQualtrics = getQueryVariable("DCSource");
+				//window.alert(DCSource);
+				
 				//now get group from URL and ready to be sent back to Qualtrics
 				toQualtrics_group = getQueryVariable("group");
 				//window.alert("group is "+toQualtrics_group);
+				
+				toQualtrics_DCSource = getQueryVariable("DCSource");
+				//window.alert("source is "+toQualtrics_DCSource);
 				
 				if (participantIDfromQualtrics != false) {
 					document.getElementById("widgetu123_input").value = participantIDfromQualtrics;
@@ -338,8 +347,17 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 								
 								//original Qualtrics URL: http://adelaide.qualtrics.com/jfe/form/SV_295Hm3maiNkP9DD
 								
-								document.getElementById("redirect").value="https://adelaideunisop.syd1.qualtrics.com/jfe/form/SV_2spbOTamK6xBvca?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&numbersUsed="+toQualtrics_numbersDetected+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group+"&attemptedSurveyPWexact="+toQualtrics_attemptedSurveyPasswordExact+"&SurveyPWexactInside="+toQualtrics_SurveyPasswordExactInside+"&SurveyPWPartial="+toQualtrics_SurveyPasswordPartial+"&entropyOfOrigExactReuse="+toQualtrics_entropyOfExactReuse;
+								//window.alert(toQualtrics_DCSource);
 								
+								if (toQualtrics_DCSource == "CYAN") {
+									document.getElementById("redirect").value="https://adelaideunisop.syd1.qualtrics.com/jfe/form/SV_2spbOTamK6xBvca?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&numbersUsed="+toQualtrics_numbersDetected+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group+"&attemptedSurveyPWexact="+toQualtrics_attemptedSurveyPasswordExact+"&SurveyPWexactInside="+toQualtrics_SurveyPasswordExactInside+"&SurveyPWPartial="+toQualtrics_SurveyPasswordPartial+"&entropyOfOrigExactReuse="+toQualtrics_entropyOfExactReuse+"&DCSource="+toQualtrics_DCSource;
+									//window.alert(document.getElementById("redirect").value);
+									} 
+									else if (toQualtrics_DCSource == "regular") {
+									document.getElementById("redirect").value="https://adelaideunisop.syd1.qualtrics.com/jfe/form/SV_8vJpw6ot4z9mbJ4?succeeded=success&participantIDreturned="+participantIDhasContent+"&passwordStrength="+toQualtrics_passwordStrength+"&passwordLength="+toQualtrics_passwordLength+"&numGuessesNeeded="+toQualtrics_numberOfGuessesNeeded+"&numGuessesNeededLog10="+toQualtrics_noGuessesLog10+"&lowerCaseUsed="+toQualtrics_lowerCaseUsed+"&upperCaseUsed="+toQualtrics_upperCaseUsed+"&numbersUsed="+toQualtrics_numbersDetected+"&specialCharUsed="+toQualtrics_specialCharacterDetected+"&pwManagerAttempted="+toQualtrics_passwordManagerDetected+"&passphraseUsed="+toQualtrics_passphraseDetected+"&groupReturned="+toQualtrics_group+"&attemptedSurveyPWexact="+toQualtrics_attemptedSurveyPasswordExact+"&SurveyPWexactInside="+toQualtrics_SurveyPasswordExactInside+"&SurveyPWPartial="+toQualtrics_SurveyPasswordPartial+"&entropyOfOrigExactReuse="+toQualtrics_entropyOfExactReuse+"&DCSource="+toQualtrics_DCSource;
+									//window.alert(document.getElementById("redirect").value);
+									};
+									
 								document.getElementById("widgetu123_input").disabled = "disabled";
 								document.getElementById("widgetu127_input").disabled = "disabled";
 								
